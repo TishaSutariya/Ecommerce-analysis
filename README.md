@@ -76,6 +76,3 @@ streamlit run streamlit/app.py
 - This project is designed for portfolio and interview presentation.
 - The UI uses a blue color palette for a clean professional look.
 - The sidebar is styled to remain readable in dark mode.
-
-## Author
-Created by Tisha Sutariya.
