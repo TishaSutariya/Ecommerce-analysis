@@ -22,8 +22,8 @@ streamlit-plotly-events>=0.0.6
 
 # Database & Data Loading
 sqlalchemy>=2.0.0
-psycopg2-binary>=2.9.0  # PostgreSQL
-pymysql>=1.0.0  # MySQL
+psycopg2-binary>=2.9.0
+pymysql>=1.0.0
 
 # Data Processing & Utilities
 python-dateutil>=2.8.0
@@ -36,52 +36,18 @@ flask-cors>=4.0.0
 
 # Model Serialization
 joblib>=1.3.0
-pickle5>=0.0.11  # Python 3.7 compatibility
 
 # Deployment & Utilities
 python-dotenv>=1.0.0
-gunicorn>=21.0.0  # For production server
+gunicorn>=21.0.0
 
 # Development & Testing
 pytest>=7.0.0
-black>=23.0.0  # Code formatter
-pylint>=2.16.0  # Code linter
-jupyter>=1.0.0  # Jupyter notebooks
+black>=23.0.0
+pylint>=2.16.0
+jupyter>=1.0.0
 
 # Optional: Advanced Features
-optuna>=3.0.0  # Hyperparameter tuning
-shap>=0.41.0  # Model explainability
-imblearn>=0.11.0  # Imbalanced data handling
-
-# Requirements Summary:
-# - Data Processing: pandas, numpy, scipy
-# - ML Models: scikit-learn, xgboost, lightgbm
-# - Visualization: matplotlib, seaborn, plotly
-# - Web Apps: streamlit, flask
-# - Databases: sqlalchemy, psycopg2, pymysql
-# - Utilities: python-dateutil, pytz, requests
-# - Development: pytest, jupyter, black, pylint
-
-# Installation Instructions:
-# 1. Create virtual environment:
-#    python -m venv venv
-#    source venv/bin/activate  # On Windows: venv\Scripts\activate
-#
-# 2. Install requirements:
-#    pip install -r requirements.txt
-#
-# 3. Run analysis:
-#    python FUNNEL_ANALYSIS_COMPLETE.py
-#
-# 4. Run dashboard:
-#    streamlit run funnel_dashboard.py
-#
-# 5. Test installation:
-#    python -c "import pandas, numpy, sklearn, xgboost, streamlit; print('✅ All packages installed!')"
-
-# Notes:
-# - xgboost and lightgbm require C++ compiler
-# - psycopg2 requires PostgreSQL client libraries
-# - For Mac: brew install postgresql
-# - For Linux: apt-get install postgresql-client
-# - For Windows: Install PostgreSQL from official website
+optuna>=3.0.0
+shap>=0.41.0
+imbalanced-learn>=0.11.0
