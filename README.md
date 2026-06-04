@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 🚀 USER FUNNEL ANALYSIS - Complete Data Science Project
 
 **Production-Ready | Interview-Ready | Portfolio-Worthy**
@@ -565,3 +566,7 @@ Before using in interview:
 
 **Last Updated**: June 2024
 **Version**: 1.0 - Production Ready
+=======
+# Ecommerce-analysis
+This is my second project. 
+>>>>>>> 69f87d6d4197546822d99b171e7be74120a34e6e
