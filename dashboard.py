@@ -12,7 +12,7 @@ st.set_page_config(page_title="Funnel Dashboard", page_icon="🚀", layout="wide
 BASE_DIR = Path(__file__).parent
 
 st.title("🚀 Funnel Dashboard")
-st.image(BASE_DIR / "banner1.png", use_container_width=True)
+st.image("banner1.png", use_container_width=True)
 st.markdown("---")
 
 with st.sidebar:
