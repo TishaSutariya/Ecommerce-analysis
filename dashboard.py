@@ -13,6 +13,7 @@ from sklearn.metrics import accuracy_score
 st.set_page_config(page_title="Funnel Dashboard", page_icon="🚀", layout="wide")
 
 st.title("🚀 Funnel Dashboard")
+st.image("banner1.png", use_container_width=True)
 st.markdown("---")
 
 with st.sidebar:
