@@ -1,0 +1,14 @@
+venv/
+env/
+.venv/
+
+__pycache__/
+*.pyc
+
+.streamlit/
+
+.DS_Store
+Thumbs.db
+.ipynb_checkpoints/
+
+*.log
