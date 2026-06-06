@@ -14,13 +14,9 @@ st.set_page_config(page_title="Funnel Dashboard", page_icon="🚀", layout="wide
 BASE_DIR = Path(__file__).parent
 
 st.title("🚀 Funnel Dashboard")
-
-banner_path = "banner1.png"
-if os.path.exists(banner_path):
-    banner = Image.open(banner_path)
-    st.image(banner, width="stretch")
-else:
-    st.warning("banner1.png not found")
+banner_path = os.path.join("banner1.png")
+banner = Image.open(banner_path)
+st.image(banner, use_column_width=True)
 st.markdown("---")
 
 with st.sidebar:
