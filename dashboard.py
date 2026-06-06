@@ -3,20 +3,24 @@ import pandas as pd
 import numpy as np
 import plotly.express as px
 from pathlib import Path
+from PIL import Image
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
-import os 
-from PIL import Image
 
 st.set_page_config(page_title="Funnel Dashboard", page_icon="🚀", layout="wide")
 
 BASE_DIR = Path(__file__).parent
 
 st.title("🚀 Funnel Dashboard")
-banner_path = os.path.join("banner1.png")
-banner = Image.open(banner_path)
-st.image(banner, use_container_width=True)
+
+banner_path = BASE_DIR / "banner1.png"
+if banner_path.exists():
+    banner = Image.open(banner_path)
+    st.image(banner, use_container_width=True)
+else:
+    st.warning("banner1.png not found")
+
 st.markdown("---")
 
 with st.sidebar:
@@ -47,7 +51,7 @@ model_features = ["sessions", "days_active", "device", "traffic_source", "avg_se
 X = df[model_features]
 y = df["converted"]
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+X_train, X_test, y_train, y_train = train_test_split(X, y, test_size=0.2, random_state=42)
 
 model = RandomForestClassifier(n_estimators=100, random_state=42)
 model.fit(X_train, y_train)
