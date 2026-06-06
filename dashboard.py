@@ -6,13 +6,16 @@ from pathlib import Path
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
+import os 
 
 st.set_page_config(page_title="Funnel Dashboard", page_icon="🚀", layout="wide")
 
 BASE_DIR = Path(__file__).parent
 
 st.title("🚀 Funnel Dashboard")
-st.image("banner1.png", use_container_width=True)
+banner_path = os.path.join("banner1.png")
+banner = Image.open(banner_path)
+st.image(banner, use_container_width=True)
 st.markdown("---")
 
 with st.sidebar:
