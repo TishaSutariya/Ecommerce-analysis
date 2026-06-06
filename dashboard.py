@@ -1,33 +1,27 @@
-"""
-Simple Funnel Dashboard
-"""
-
 import streamlit as st
 import pandas as pd
 import numpy as np
 import plotly.express as px
-import os
+from pathlib import Path
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 
 st.set_page_config(page_title="Funnel Dashboard", page_icon="🚀", layout="wide")
 
+BASE_DIR = Path(__file__).parent
+
 st.title("🚀 Funnel Dashboard")
-st.image("banner1.png", use_container_width=True)
+st.image(BASE_DIR / "banner1.png", use_container_width=True)
 st.markdown("---")
 
 with st.sidebar:
     page = st.radio("Choose:", ["Overview", "Prediction", "ML Model", "Insights"])
 
-# ✅ FIX 1: Safe file path (Streamlit Cloud compatible)
-data_path = os.path.join("data", "fake_ecommerce_data.csv")
-df = pd.read_csv(data_path)
+df = pd.read_csv(BASE_DIR / "data" / "fake_ecommerce_data.csv")
 
 df["converted"] = 0
 df.loc[df["max_step"] == 7, "converted"] = 1
-
-# ❌ FIX 2: Removed randomness (prevents unstable results)
 df.loc[df["max_step"] == 6, "converted"] = 0
 
 df["device_name"] = df["device"].map({0: "Mobile", 1: "Desktop", 2: "Tablet"})
@@ -78,8 +72,6 @@ if page == "Overview":
         color_continuous_scale="Blues"
     )
     fig1.update_layout(yaxis={"categoryorder": "total ascending"})
-
-    # FIX 3
     st.plotly_chart(fig1, use_container_width=True)
 
     st.subheader("📱 Conversion by Device")
@@ -198,8 +190,8 @@ elif page == "Insights":
         if drop > biggest_drop:
             biggest_drop = drop
             biggest_step = step
-    
-    st.write(f"1. Biggest drop-off: {step_names[biggest_step]} → {biggest_drop:.1f}% drop") 
+
+    st.write(f"1. Biggest drop-off: {step_names[biggest_step]} → {biggest_drop:.1f}% drop")
     st.write(f"2. Best device: {device_conv.idxmax()} - {device_conv.max():.1f}%")
     st.write(f"3. Best traffic source: {source_conv.idxmax()} - {source_conv.max():.1f}%")
     st.write(f"4. Model accuracy: {accuracy_score(y_test, model.predict(X_test)) * 100:.1f}%")
