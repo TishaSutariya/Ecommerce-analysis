@@ -1,6 +1,5 @@
 """
 Simple Funnel Dashboard - Streamlit Version
-NO HTML - Just Basic Python!
 """
 
 import streamlit as st
