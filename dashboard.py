@@ -39,8 +39,10 @@ step_names = {
 
 blue_colors = ["#6CB5FA", "#A9CCE3", "#7FB3D5", "#5499C7", "#4CB7FF", "#34ADFE", "#049BFA"]
 
-X = df[["sessions", "days_active", "device", "traffic_source", "max_step", "avg_session_time"]]
+model_features = ["sessions", "days_active", "device", "traffic_source", "avg_session_time"]
+X = df[model_features]
 y = df["converted"]
+
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
 model = RandomForestClassifier(n_estimators=100, random_state=42)
@@ -114,7 +116,6 @@ elif page == "Prediction":
     days_active = st.slider("Days Active", 1, 365, 30)
     device = st.selectbox("Device", ["Mobile", "Desktop", "Tablet"])
     traffic = st.selectbox("Traffic Source", ["Organic", "Paid Ad", "Referral", "Social"])
-    step = st.select_slider("Max Step Reached", options=list(step_names.values()), value="Added to Cart")
     avg_time = st.slider("Avg Session Time (seconds)", 30, 600, 300)
 
     predict = st.button("🔮 Predict", type="primary", use_container_width=True)
@@ -122,14 +123,12 @@ elif page == "Prediction":
     if predict:
         device_num = {"Mobile": 0, "Desktop": 1, "Tablet": 2}[device]
         traffic_num = {"Organic": 0, "Paid Ad": 1, "Referral": 2, "Social": 3}[traffic]
-        step_num = {v: k for k, v in step_names.items()}[step]
 
         new_user = pd.DataFrame([{
             "sessions": sessions,
             "days_active": days_active,
             "device": device_num,
             "traffic_source": traffic_num,
-            "max_step": step_num,
             "avg_session_time": avg_time
         }])
 
@@ -161,7 +160,7 @@ elif page == "ML Model":
     st.markdown("---")
 
     importance = pd.DataFrame({
-        "Feature": ["sessions", "days_active", "device", "traffic_source", "max_step", "avg_session_time"],
+        "Feature": model_features,
         "Importance": model.feature_importances_
     }).sort_values("Importance", ascending=False)
 
