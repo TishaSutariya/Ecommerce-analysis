@@ -1,7 +1,5 @@
 """
 Simple Funnel Dashboard
-Student-Friendly Version
-Blue Colors Only
 """
 
 import streamlit as st
