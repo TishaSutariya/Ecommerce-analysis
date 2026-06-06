@@ -15,10 +15,12 @@ BASE_DIR = Path(__file__).parent
 
 st.title("🚀 Funnel Dashboard")
 
-banner_path = os.path.join("banner1.png")
-banner = Image.open(banner_path)
-st.image(banner, width="stretch")
-
+banner_path = "banner1.png"
+if os.path.exists(banner_path):
+    banner = Image.open(banner_path)
+    st.image(banner, width="stretch")
+else:
+    st.warning("banner1.png not found")
 st.markdown("---")
 
 with st.sidebar:
