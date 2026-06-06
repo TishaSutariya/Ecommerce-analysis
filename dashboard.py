@@ -6,6 +6,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import plotly.express as px
+import os
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
@@ -19,11 +20,15 @@ st.markdown("---")
 with st.sidebar:
     page = st.radio("Choose:", ["Overview", "Prediction", "ML Model", "Insights"])
 
-df = pd.read_csv("data/fake_ecommerce_data.csv")
+# ✅ FIX 1: Safe file path (Streamlit Cloud compatible)
+data_path = os.path.join("data", "fake_ecommerce_data.csv")
+df = pd.read_csv(data_path)
 
 df["converted"] = 0
 df.loc[df["max_step"] == 7, "converted"] = 1
-df.loc[(df["max_step"] == 6) & (np.random.rand(len(df)) < 0.7), "converted"] = 1
+
+# ❌ FIX 2: Removed randomness (prevents unstable results)
+df.loc[df["max_step"] == 6, "converted"] = 0
 
 df["device_name"] = df["device"].map({0: "Mobile", 1: "Desktop", 2: "Tablet"})
 df["source_name"] = df["traffic_source"].map({0: "Organic", 1: "Paid Ad", 2: "Referral", 3: "Social"})
@@ -73,7 +78,9 @@ if page == "Overview":
         color_continuous_scale="Blues"
     )
     fig1.update_layout(yaxis={"categoryorder": "total ascending"})
-    st.plotly_chart(fig1, width="stretch")
+
+    # FIX 3
+    st.plotly_chart(fig1, use_container_width=True)
 
     st.subheader("📱 Conversion by Device")
     device_conv = df.groupby("device_name")["converted"].mean() * 100
@@ -84,7 +91,7 @@ if page == "Overview":
         color="device_name",
         color_discrete_sequence=blue_colors[:3]
     )
-    st.plotly_chart(fig2, width="stretch")
+    st.plotly_chart(fig2, use_container_width=True)
 
     st.subheader("📣 Conversion by Traffic Source")
     source_conv = df.groupby("source_name")["converted"].mean() * 100
@@ -95,7 +102,7 @@ if page == "Overview":
         color="source_name",
         color_discrete_sequence=blue_colors[:4]
     )
-    st.plotly_chart(fig3, width="stretch")
+    st.plotly_chart(fig3, use_container_width=True)
 
     st.subheader("🥧 Traffic Distribution")
     traffic_dist = df["source_name"].value_counts().reset_index()
@@ -106,7 +113,7 @@ if page == "Overview":
         values="Count",
         color_discrete_sequence=blue_colors[:4]
     )
-    st.plotly_chart(fig4, width="stretch")
+    st.plotly_chart(fig4, use_container_width=True)
 
 elif page == "Prediction":
     st.header("🎯 Predict if User Will Buy")
@@ -174,7 +181,7 @@ elif page == "ML Model":
         color="Importance",
         color_continuous_scale="Blues"
     )
-    st.plotly_chart(fig5, width="stretch")
+    st.plotly_chart(fig5, use_container_width=True)
 
 elif page == "Insights":
     st.header("💡 Business Insights")
