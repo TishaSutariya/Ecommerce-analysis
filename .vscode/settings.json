@@ -1,0 +1,12 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "User Journey Database",
+            "database": " funnel.db"
+        }
+    ],
+    "sqltools.useNodeRuntime": true,
+    "python-envs.defaultEnvManager": "ms-python.python:system"
+}

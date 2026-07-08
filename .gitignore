@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 venv/
 env/
 .venv/
@@ -12,3 +13,21 @@ Thumbs.db
 .ipynb_checkpoints/
 
 *.log
+=======
+__pycache__/
+*.py[cod]
+*.log
+.venv/
+venv/
+env/
+ENV/
+.ipynb_checkpoints/
+.DS_Store
+Thumbs.db
+.env
+.env.*
+*.pem
+*.key
+*.db-shm
+*.db-wal
+>>>>>>> 46e6b0d (Update project files)
